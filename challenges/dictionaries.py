@@ -25,11 +25,23 @@ while condition:
       "powers": "super strength",
       "archenemy": "adrenaline"}
              }
+    if char_stat == "real name":
+        print(f"{char_name}'s {char_stat} is: {marvelchars[char_name][char_stat].title()}")
+    else:
+        print(f"{char_name}'s {char_stat} is: {marvelchars[char_name][char_stat]}")
 
-    print(f"{char_name}'s {char_stat} is: {marvelchars[char_name][char_stat].title()}")
-
-    check = input("Do you want to keep looking for more information? (y/n)")
+    check = input("Do you want to look up another charactor? (y/n)").lower()
     if check == "y":
         condition = True
     else:
         condition = False
+
+
+
+
+
+
+
+
+
+
