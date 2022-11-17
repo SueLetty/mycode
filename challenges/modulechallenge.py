@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-# create a script that includes the trivia dictionary
+import html
 
-trivia= {
+def triviaGame():
+    # create a script that includes the trivia dictionary
+
+    trivia= {
          "category": "Entertainment: Film",
          "type": "multiple",
          "question": "Which of the following is NOT a quote from the 1942 film Casablanca? ",
@@ -14,11 +17,30 @@ trivia= {
             ]
         }
 
-# slice and print out the trivia question and the four answers( one correct, three incorrect) from the idctionary
+    # slice and print out the trivia question and the four answers( one correct, three incorrect) from the idctionary
+    question = trivia["question"]
+    correct = html.unescape(trivia["correct_answer"])
+    incorrect1 = html.unescape(trivia["incorrect_answers"][0])
+    incorrect2 = html.unescape(trivia["incorrect_answers"][1])
+    incorrect3 = html.unescape(trivia["incorrect_answers"][2])
+    # use the html libaray to render the question/answers in the proper format
 
-# use the html libaray to render the question/answers in the proper format
 
+    # BONUS: have the user answer A, B, C, or D and see if they guess the answer correctly
+    print(question)
+    print("A: " + correct)
+    print("B: " + incorrect1)
+    print("C: " + incorrect2)
+    print("D: " + incorrect3)
 
-# BONUS: have the user answer A, B, C, or D and see if they guess the answer correctly
+    answer = input("Please choose a correct answer A, B, C, or D: ").capitalize()
 
+    while True:
+        if answer == "A":
+            print("You got it right!")
+            return
+        else:
+            print("try agian!")
+            answer = input("Please choose a correct answer A, B, C, or D: ").capitalize()
 
+triviaGame()

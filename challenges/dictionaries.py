@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
+#i!/usr/bin/env python3
 
 condition = True
 while condition:
 
     # save a user's input to the variable char_name 
-    char_name = input("Which character do you want to know about? (Starlord, Mystique, Hulk)")
+    char_name = input("Which character do you want to know about? (Starlord, Mystique, Hulk)").capitalize()
 
     # save a user's input to the variable char_stat 
-    char_stat = input("What statistic do you want to know about? (real name, powers, archenemy)")
+    char_stat = input("What statistic do you want to know about? (real name, powers, archenemy)").lower()
 
     marvelchars= {
     "Starlord":
