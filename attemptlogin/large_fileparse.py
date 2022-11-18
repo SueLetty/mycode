@@ -15,7 +15,7 @@ with open("/home/student/mycode/attemptlogin/keystone.common.wsgi") as kfile:
         if "- - - - -] Authorization failed" in line:
             print(line.split(" ")[-1])
             loginfail += 1 # this is the same as loginfail = loginfail + 1
-        elif "-] Authorization failed " in line:
+        elif "-] Authorization failed." in line:
             loginsuccessfull += 1
 print("The number of failed log in attempts is", loginfail)
 print("the number of successful log in attemts is", loginsuccessfull)
