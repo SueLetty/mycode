@@ -105,7 +105,7 @@ def main():
     while condition:
         print("What do you want to check?")
         print("\t1. Enter a year to check your Chinese Zodiac")
-        print("\t2. Enter a Chinese Zodic to check which years correlate to which Chinese Zodiac")
+        print("\t2. Enter a Chinese Zodiac to check which years correlate to which Chinese Zodiac")
         num = input(">")
         if num.isdigit():
             if num == "1":
