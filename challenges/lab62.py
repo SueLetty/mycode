@@ -15,7 +15,9 @@ farms2 = [{"name": "Southwest Farm",
              "agriculture": ["bananas", "apples", "oranges"]},
          {"name": "West Farm", 
              "agriculture": ["pigs", "chickens", "llamas"]}]
-         
+       
+# what are the vegs and fruit objects?
+# tuples!
 vegs = ("carrots", "celery")
 fruit = ("bananas", "apples", "oranges")
 
@@ -54,3 +56,25 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
