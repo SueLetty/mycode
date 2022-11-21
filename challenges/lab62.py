@@ -22,23 +22,34 @@ fruit = ("bananas", "apples", "oranges")
 def animal(farms, farmname):
     animals = []
     for x in farms:
-        if x["name"] == farmname:
+        if x["name"].lower() == farmname.lower():
             for y in x["agriculture"]:
                 if y not in vegs and y not in fruit:
                     animals.append(y)
     return animals
 
 def main():
-
-    farms = input("Choose a farms data (farms1 or farms2): ")
+    condition = True
+    while condition:
+        farms = input("Choose a farms data (farms1 or farms2): ")
+        if farms == "farms1":
+            farms = farms1
+            condition = False
+        elif farms == "farms2":
+            farms = farms2
+            condition = False
+        else:
+            continue
+    listOfFarms = []
     print("There are ", end="")
-    if farms == "farms1":
-        farms = farms1
-    elif farms == "farms2":
-        farms = farms2
     for x in range(len(farms)):
+        listOfFarms.append(farms[x]["name"])
         print(farms[x]["name"], end=", ")
-    farmname = input("\nplease choose a farmname: ")
+    
+    
+    farmname = input("please choose a farmname: ")
+    while farmname not in listOfFarms:
+        farmname = input("plase choose a correct farmname: ")
     print(animal(farms, farmname))
 
 if __name__ == "__main__":
