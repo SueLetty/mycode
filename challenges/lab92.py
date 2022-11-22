@@ -6,12 +6,17 @@ import reverse_geocoder as rg
 
 URL= "http://api.open-notify.org/iss-now.json"
 def main():
+    # API get request
     resp= requests.get(URL).json()
 
-    # SOLUTION TO PART 2
+    # get lon and lat
     lon= resp["iss_position"]["longitude"]
     lat= resp["iss_position"]["latitude"]
+
+    # Epoch time
     date_time = datetime.datetime.fromtimestamp(resp["timestamp"])
+    
+    # using lat and log to get city and country
     coords_tuple = (lat, lon)
     location = rg.search(coords_tuple, verbose=False)
     city = location[0]["name"]
