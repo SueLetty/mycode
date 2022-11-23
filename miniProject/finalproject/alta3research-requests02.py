@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+import requests
+import webbrowser
+import os
+
 """Driving a simple game framework with
    a dictionary object | Alta3 Research"""
 
@@ -31,34 +36,13 @@ inventory = []
 
 # a dictionary linking a room to other rooms
 ## A dictionary linking a room to other rooms
-rooms = {
-
-            'Hall' : {
-                  'north' : 'Bethroom',      
-                  'south' : 'Kitchen',
-                  'east'  : 'Dining Room',
-                  'item'  : 'key'
-                },
-
-            'Kitchen' : {
-                  'north' : 'Hall',
-                  'item'  : 'monster',
-                },
-            'Dining Room' : {
-                  'west' : 'Hall',
-                  'south': 'Garden',
-                  'item' : 'potion'
-               },
-            'Garden' : {
-                  'north' : 'Dining Room'
-                },
-            'Bethroom' : {
-                'south' : 'Hall'
-                }
-         }
-
-# start the player in the Hall
-currentRoom = 'Hall'
+dataurl = "https://aux1-b860adc9-d1c5-41dd-ac6c-006ce875116d.live.alta3.com/data"
+roomurl = "https://aux1-b860adc9-d1c5-41dd-ac6c-006ce875116d.live.alta3.com/room"
+statusurl = "https://aux1-b860adc9-d1c5-41dd-ac6c-006ce875116d.live.alta3.com/status"
+mapurl ="https://aux1-b860adc9-d1c5-41dd-ac6c-006ce875116d.live.alta3.com/map"
+#start at random room
+rooms = requests.get(dataurl).json() 
+currentRoom = requests.get(roomurl).text
 
 showInstructions()
 
@@ -97,20 +81,33 @@ while True:
             inventory.append(move[1])
             #display a helpful message
             print(move[1] + ' got!')
+
+                ## If a player enters a room with a map
+            if 'item' in rooms[currentRoom] and 'map' in rooms[currentRoom]['item']:
+                #go to get image from the API
+                print("click on the link to get the map")
+                print(mapurl)
+
             #delete the item key:value pair from the room's dictionary
             del rooms[currentRoom]['item']
-        
-        ## If a player enters a room with a monster
-        elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
-            print('A monster has got you... GAME OVER!')
-
         # if there's no item in the room or the item doesn't match
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
 
+    ## If a player enters a room with a monster
+    if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'saw' not in inventory:
+        print('A monster has got you... GAME OVER!')
+        break
 
-        ## Define how a player can win
-    if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
+    ## If a player enters a room with a monster and have a saw
+    elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item'] and 'saw' in inventory:
+        print('You defeated the monster! You won!!!')
+        break
+
+
+    ## Define how a player can win
+    elif currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
         print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
         break
+

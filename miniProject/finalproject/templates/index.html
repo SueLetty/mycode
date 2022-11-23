@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Status</title>
+</head>
+<body>
+
+    <h1>{{ name }}</h1>
+        <ul>
+            <p>You can go:</p>
+            {% for key in data[name] %}
+            {% if key != "item" %}
+            <li> {{key}}:{{data[name][key]}} </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <p>You can get:</p>
+        <ul>
+            <li>{{data[name]['item']}}</li>
+        </ul>
+    
+    
+</body>
+</html>
