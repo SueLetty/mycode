@@ -11,11 +11,12 @@ import os
 def showInstructions():
     """Show the game instructions when called"""
     print(""" You are starting in a random room. 
-    If you started at the Kitchen, you will loss the game immediately.
     There are two ways you can win.
-    - First, you can get a key and a potion to escape from the garden.
-    - Second, you can get a saw and use it to defeat the monster.
-    If you go to the room where the moster lives without a saw, you will lose the game.
+    - If you can get a key and a potion to escape from the garden.
+    - If you can get a saw and use it to defeat the monster.
+    There are two ways you will loss.
+    - If you go to the room where the moster lives without a saw, you will lose the game.
+    - If the game started in a room where the monster lives, you will loss the game immediately.
     """)
     #print a main menu and the commands
     print('''

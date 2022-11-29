@@ -1,0 +1,27 @@
+body{
+        
+    background-image: url("https://i.pinimg.com/564x/a5/2e/3e/a52e3ead549f0fef288d9d074b979df2--computer.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+
+}
+div{
+    justify-content:  center;
+}
+img{
+    justify-content: center;
+    width: 600px;
+    height: 400px;
+}
+
+header{
+    background-color: white;
+    font-size: large;
+}

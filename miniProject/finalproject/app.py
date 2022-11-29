@@ -8,8 +8,8 @@ import requests
 import random
 
 app = Flask(__name__)
-    ## A dictionary linking a room to other rooms
-data = {
+
+info = {
         'Hall' : {
                 'south' : 'Kitchen',
                 'east'  : 'Dining Room',
@@ -37,21 +37,33 @@ data = {
                 'item'  : 'saw'
         }
 }
+#landing page 
 @app.route("/")
+@app.route("/home")
+@app.route("/home.html")
+def home():
+    return render_template("home.html")
+
+# game info
+@app.route("/aboutthegame")
+@app.route("/aboutthegame.html")
+def gameinfo():
+    return render_template("aboutthegame.html")
+
 @app.route("/data")
 def data():
-
-    return data
+    return info
 
 @app.route("/room")
 def room():
-    currentRoom = random.choice(data.keys())
+    currentRoom = random.choice(list(info.keys()))
     return currentRoom
 
 @app.route("/status/<room>")
 def status(room):
-    return render_template("index.html", name = room, data = data)
+    return render_template("index.html", name = room, data = info)
 
+@app.route("/map.html")
 @app.route("/map")
 def map():
     return render_template('map.html')
