@@ -9,18 +9,19 @@
 <body>
 
     <h1>{{ name }}</h1>
-        <ul>
-            <p>You can go:</p>
-            {% for key in data[name] %}
-            {% if key != "item" %}
-            <li> {{key}}:{{data[name][key]}} </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-        <p>You can get:</p>
-        <ul>
-            <li>{{data[name]['item']}}</li>
-        </ul>
+
+    <p>You can go:</p>
+    <ul>
+        {% for key in data[name] %}
+        {% if key != "item" %}
+        <li> {{key}}:{{data[name][key]}} </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <p>You can get:</p>
+    <ul>
+        <li>{{data[name]['item']}}</li>
+    </ul>
     
     
 </body>

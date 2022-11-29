@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import requests
-import webbrowser
+import sys
+import time
 import os
 
 """Driving a simple game framework with
@@ -9,6 +10,13 @@ import os
 
 def showInstructions():
     """Show the game instructions when called"""
+    print(""" You are starting in a random room. 
+    If you started at the Kitchen, you will loss the game immediately.
+    There are two ways you can win.
+    - First, you can get a key and a potion to escape from the garden.
+    - Second, you can get a saw and use it to defeat the monster.
+    If you go to the room where the moster lives without a saw, you will lose the game.
+    """)
     #print a main menu and the commands
     print('''
     RPG Game
@@ -45,10 +53,16 @@ rooms = requests.get(dataurl).json()
 currentRoom = requests.get(roomurl).text
 
 showInstructions()
+time.sleep(30)
+os.system("clear")
+
 
 # breaking this while loop means the game is over
 while True:
     showStatus()
+
+    if currentRoom == "Kitchen":
+        sys.exit("There is a monster in the Kitchen. You lost the game.")
 
     # the player MUST type something in
     # otherwise input will keep asking

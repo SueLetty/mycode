@@ -9,6 +9,7 @@ import random
 
 app = Flask(__name__)
 
+@app.route("/")
 @app.route("/data")
 def data():
     ## A dictionary linking a room to other rooms
