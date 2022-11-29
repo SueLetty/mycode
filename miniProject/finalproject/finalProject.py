@@ -8,53 +8,48 @@ import requests
 import random
 
 app = Flask(__name__)
+    ## A dictionary linking a room to other rooms
+data = {
+        'Hall' : {
+                'south' : 'Kitchen',
+                'east'  : 'Dining Room',
+                'north': 'Bathroom',
+                'item'  : 'key'
+            },
 
+        'Kitchen' : {
+                'north' : 'Hall',
+                'east'  : 'Garden',
+                'item'  : 'monster',
+            },
+        'Dining Room' : {
+                'west' : 'Hall',
+                'south': 'Garden',
+                'item' : 'potion'
+            },
+        'Garden' : {
+                'north' : 'Dining Room',
+                'west'  : 'Kitchen',
+                'item'  : 'map'
+            },
+        'Bathroom' : {
+                'south' : 'Hall',
+                'item'  : 'saw'
+        }
+}
 @app.route("/")
 @app.route("/data")
 def data():
-    ## A dictionary linking a room to other rooms
-    data = {
 
-                'Hall' : {
-                      'south' : 'Kitchen',
-                      'east'  : 'Dining Room',
-                      'north': 'Bathroom',
-                      'item'  : 'key'
-                    },
-
-                'Kitchen' : {
-                      'north' : 'Hall',
-                      'east'  : 'Garden',
-                      'item'  : 'monster',
-                    },
-                'Dining Room' : {
-                      'west' : 'Hall',
-                      'south': 'Garden',
-                      'item' : 'potion'
-                   },
-                'Garden' : {
-                      'north' : 'Dining Room',
-                      'west'  : 'Kitchen',
-                      'item'  : 'map'
-                    },
-                'Bathroom' : {
-                      'south' : 'Hall',
-                      'item'  : 'saw'
-                }
-             }
     return data
 
-rooms = ["Hall", "Kitchen", "Dining Room", "Garden"]
 @app.route("/room")
 def room():
-    curroom = random.choice(rooms)
-    return curroom
+    currentRoom = random.choice(data.keys())
+    return currentRoom
 
 @app.route("/status/<room>")
 def status(room):
-    dataurl = "https://aux1-b860adc9-d1c5-41dd-ac6c-006ce875116d.live.alta3.com/data"
-    data = requests.get(dataurl).json() 
-    print(data)
     return render_template("index.html", name = room, data = data)
 
 @app.route("/map")
